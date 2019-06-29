@@ -25,7 +25,12 @@
                 <li class="list-group-item">Internal storage 32GB</li>
                 <li class="list-group-item">Expandable storage Yes</li>
                 <li class="list-group-item">Expandable storage type microSD</li>
-                <button class="btn btn-primary">Buy Now</button>
+                <form class="soofa" action="/payment/"  method="post">{% csrf_token %}
+                     <input type="text" name="amount" value="105" hidden />
+                     <input type="text" name="reference" value="my reference" hidden />
+                     <input type="text" name="tid" value="" hidden />
+                     <input id="ww" type="button" class="btn btn-primary qbn-submit" value="Poceed to pay" />
+                </form>
             </ul>
         </div>
     </div>
@@ -34,4 +39,11 @@
 <script type="text/javascript" src="{% static 'bootstrap.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'popper.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'jquery-3.3.1.slim.min.js' %}"></script>
+<script
+     id="qbn"
+     src="https://checkout.soofapay.com/v1/soofa.min.js"
+     type="text/javascript"
+     data-till="5002">
+
+</script>
 </html>
