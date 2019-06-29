@@ -11,6 +11,11 @@
     <a class="navbar-brand pl-lg-5" href="#">Soofapay Demo</a>
 </nav>
 <div class="row">
+    {% if payment %}
+        <h3> Your payment of {{ payment.sender_currency }} {{ payment.gross_amount }} and transaction reference is {{ payment.tid }}</h3>
+    {% endif %}
+</div>
+<div class="row">
     <div class="col-sm-4 offset-2">
         <img src="{% static 'nokia.jpg' %}" class="img-responsive" style="max-width: 100%">
     </div>
@@ -26,7 +31,7 @@
                 <li class="list-group-item">Expandable storage Yes</li>
                 <li class="list-group-item">Expandable storage type microSD</li>
                 <form class="soofa" action="/payment/"  method="post">{% csrf_token %}
-                     <input type="text" name="amount" value="105" hidden />
+                     <input type="text" name="amount" value="50" hidden />
                      <input type="text" name="reference" value="my reference" hidden />
                      <input type="text" name="tid" value="" hidden />
                      <input id="ww" type="button" class="btn btn-primary qbn-submit" value="Poceed to pay" />
@@ -34,6 +39,13 @@
             </ul>
         </div>
     </div>
+</div>
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
 </div>
 </body>
 <script type="text/javascript" src="{% static 'bootstrap.min.js' %}"></script>
