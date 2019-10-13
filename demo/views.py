@@ -6,8 +6,8 @@ from django.http import HttpResponse, HttpResponseNotAllowed, HttpResponseBadReq
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 from django import forms
-from django.shortcuts import render
-from python_soofa import Soofa, Transaction
+from django.shortcuts import render, redirect
+from soofa import Soofa, Transaction
 
 from demo.models import Payment
 
@@ -39,7 +39,7 @@ def make_payment(request):
         purchase = Payment.objects.create(data=transaction.json)
         return render(request, "home.html", {"payment": transaction, "purchase": purchase})
 
- return render(request, "home.html", {"payment": None, "purchase": None})
+ return redirect("/")
 
 class PaymentView(TemplateView):
     template_name ="home.html"

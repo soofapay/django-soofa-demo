@@ -1,18 +1,21 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}"/>
-    <title>soofapay demo</title>
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    <title>soofapay demo</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
     <a class="navbar-brand pl-lg-5" href="#">Soofapay Demo</a>
 </nav>
+<div class="container">
 <div class="row">
     {% if payment %}
-        <h3> Your payment of {{ payment.sender_currency }} {{ payment.gross_amount }} and transaction reference is {{ payment.tid }}</h3>
+        <nav class="navbar navbar-light bg-success">
+            Your payment of {{ payment.sender_currency }} {{ payment.gross_amount }} was successful.
+            Your transaction reference is {{ payment.tid }}
+        </nav>
     {% endif %}
 </div>
 <div class="row">
@@ -31,14 +34,16 @@
                 <li class="list-group-item">Expandable storage Yes</li>
                 <li class="list-group-item">Expandable storage type microSD</li>
                 <form class="soofa" action="/payment/"  method="post">{% csrf_token %}
-                     <input type="text" name="amount" value="50" hidden />
+                     <input type="text" name="amount" value="102" hidden />
                      <input type="text" name="reference" value="my reference" hidden />
                      <input type="text" name="tid" value="" hidden />
-                     <input id="ww" type="button" class="btn btn-primary qbn-submit" value="Poceed to pay" />
+                     <input id="ww" type="button" class="btn btn-block btn-primary qbn-submit" value="Poceed to pay" />
                 </form>
+                <br>
             </ul>
         </div>
     </div>
+</div>
 </div>
 <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
@@ -48,14 +53,13 @@
   </div>
 </div>
 </body>
-<script type="text/javascript" src="{% static 'bootstrap.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'popper.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'jquery-3.3.1.slim.min.js' %}"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script
      id="qbn"
      src="https://checkout.soofapay.com/v1/soofa.min.js"
      type="text/javascript"
      data-till="5002">
-
 </script>
 </html>
